@@ -52,11 +52,33 @@
 (setq-default save-place t)
 (setq save-place-file "~/.emacs-saved-places")
 
-;(require 'tex-site)
-;(setq TeX-auto-save t)
-;(setq TeX-parse-self t)
-;(setq-default TeX-master nil)
+;;AUCTeX 
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)
 (setq TeX-PDF-mode t)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+(add-hook 'LaTeX-mode-hook 
+          (lambda () 
+            (turn-on-reftex) 
+            (setq reftex-plug-into-AUCTeX t))) 
+(setq TeX-PDF-mode t) 
+(setq TeX-view-program-selection 
+      '(((output-dvi style-pstricks) 
+         "dvips and PDF Viewer") 
+        (output-dvi "PDF Viewer") 
+        (output-pdf "PDF Viewer") 
+        (output-html "Safari"))) 
+(setq TeX-view-program-list 
+      '(("dvips and PDF Viewer" "%(o?)dvips %d -o && open %f") 
+        ("PDF Viewer" "open %o") 
+        ("Safari" "open %o")))
+(getenv "PATH")
+ (setenv "PATH"
+(concat
+ "/usr/texbin" ":"
+(getenv "PATH")))
 
 (set-default-font "Monaco-28")
 (add-to-list 'load-path "~/.emacs.d/evil") ; only without ELPA/el-get
