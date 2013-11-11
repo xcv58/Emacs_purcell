@@ -41,11 +41,11 @@ by the :height face attribute."
 
 (defun sanityinc/increase-default-font-height ()
   (interactive)
-  (sanityinc/increment-default-font-height 10))
+  (sanityinc/increment-default-font-height 20))
 
 (defun sanityinc/decrease-default-font-height ()
   (interactive)
-  (sanityinc/increment-default-font-height -10))
+  (sanityinc/increment-default-font-height -20))
 
 (global-set-key (kbd "C-M-=") 'sanityinc/increase-default-font-height)
 (global-set-key (kbd "C-M--") 'sanityinc/decrease-default-font-height)
