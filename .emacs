@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(custom-enabled-themes (quote (wheatgrass)))
- '(menu-bar-mode nil)
+ ;'(menu-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -52,6 +52,11 @@
 (setq-default save-place t)
 (setq save-place-file "~/.emacs-saved-places")
 
+;(require 'tex-site)
+;(setq TeX-auto-save t)
+;(setq TeX-parse-self t)
+;(setq-default TeX-master nil)
+(setq TeX-PDF-mode t)
 
 (set-default-font "Monaco-28")
 (add-to-list 'load-path "~/.emacs.d/evil") ; only without ELPA/el-get
