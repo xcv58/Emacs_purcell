@@ -27,12 +27,12 @@
 (require-package 'mwe-log-commands)
 
 (require 'init-frame-hooks)
-(require 'init-xterm)
-(require 'init-themes)
-(require 'init-osx-keys)
+;(require 'init-xterm)
+;(require 'init-themes)
+;(require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-maxframe)
-(require 'init-proxies)
+;(require 'init-proxies)
 (require 'init-dired)
 (require 'init-isearch)
 (require 'init-uniquify)
@@ -44,14 +44,14 @@
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
 (require 'init-windows)
-(require 'init-sessions)
+;(require 'init-sessions)
 (require 'init-fonts)
 (require 'init-mmm)
-(require 'init-growl)
+;(require 'init-growl)
 
 (require 'init-editing-utils)
 
-(require 'init-darcs)
+;(require 'init-darcs)
 (require 'init-git)
 
 (require 'init-crontab)
@@ -71,19 +71,18 @@
 (require 'init-rails)
 (require 'init-sql)
 
-(require 'init-paredit)
+;(require 'init-paredit)
 (require 'init-lisp)
-(require 'init-slime)
-(require 'init-clojure)
-(require 'init-common-lisp)
-
+;(require 'init-slime)
+;(require 'init-clojure)
+;(require 'init-common-lisp)
 (when *spell-check-support-enabled*
   (require 'init-spelling))
 
 (require 'init-marmalade)
 (require 'init-misc)
 
-;; Extra packages which don't require any configuration
+; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)
 (require-package 'lua-mode)

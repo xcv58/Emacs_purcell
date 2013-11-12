@@ -3,8 +3,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes (quote (wheatgrass)))
+ ;'(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ ;'(custom-enabled-themes (quote (fogus)))
+ '(custom-enabled-themes (quote (purple-haze)))
  ;'(menu-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -13,34 +14,17 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(defun set-frame-size-according-to-resolution ()
-  (interactive)
-  (if window-system
-  (progn
-    ;; use 120 char wide window for largeish displays
-    ;; and smaller 80 column windows for smaller displays
-    ;; pick whatever numbers make sense for you
-    (if (> (x-display-pixel-width) 1280)
-           (add-to-list 'default-frame-alist (cons 'width 80))
-           (add-to-list 'default-frame-alist (cons 'width 50)))
-    ;; for the height, subtract a couple hundred pixels
-    ;; from the screen height (for panels, menubars and
-    ;; whatnot), then divide by the height of a char to
-    ;; get the height we want
-    (add-to-list 'default-frame-alist 
-         (cons 'height (/ (- (x-display-pixel-height) 8)
-                             (frame-char-height)))))))
-;;(set-frame-size-according-to-resolution)
-(when window-system (set-frame-size (selected-frame) 80 20))
+;;(when window-system (set-frame-size (selected-frame) 80 20))
 (fset 'yes-or-no-p 'y-or-n-p)
+(column-number-mode t)
+;(scroll-bar-mode nil)
 ;(display-time-mode 1)
-;(setq display-time-24hr-format t) 
+;(setq display-time-24hr-format t)
 ;(setq display-time-day-and-date t)
 ;(mouse-avoidance-mode 'animate)
-;(column-number-mode t)
-;(scroll-bar-mode nil)
 ;(setq x-select-enable-clipboard t)
-(setq 
+(setq
+ default-directory "~/"
  inhibit-startup-message t
  ;; follow symlinks and don't ask
  vc-follow-symlinks t
@@ -48,37 +32,65 @@
  display-time-day-and-date t
 )
 
+
+(defun toggle-fullscreen ()
+  "Toggle full screen"
+   (interactive)
+	   (set-frame-parameter
+	     nil 'fullscreen
+	      (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
+;(toggle-full-screen)
+;(set-frame-parameter nil 'fullscreen 'fullboth)
+;set frame size on start
+(setq default-frame-alist
+      '((top . 200) (left . 400)
+	(width . 80) (height . 24)
+	(cursor-type . box)))
+(setq initial-frame-alist '((top . 0) (left . 30)))
+
+
+
+;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
+(set-frame-parameter (selected-frame) 'alpha '(85 64))
+(add-to-list 'default-frame-alist '(alpha 85 64))
+
 (require 'saveplace)
 (setq-default save-place t)
-(setq save-place-file "~/.emacs-saved-places")
+(setq save-place-file "~/.saved-places-emacs")
 
-;;AUCTeX 
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
+;;AUCTeX
+;(load "auctex.el" nil t t)
+;(load "preview-latex.el" nil t t)
+;(setq TeX-PDF-mode t)
+;(setq TeX-auto-save t)
+;(setq TeX-parse-self t)
+;(setq-default TeX-master nil)
+;(add-hook 'LaTeX-mode-hook
+;          (lambda ()
+;            (turn-on-reftex)
+;            (setq reftex-plug-into-AUCTeX t)))
 (setq TeX-PDF-mode t)
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq-default TeX-master nil)
-(add-hook 'LaTeX-mode-hook 
-          (lambda () 
-            (turn-on-reftex) 
-            (setq reftex-plug-into-AUCTeX t))) 
-(setq TeX-PDF-mode t) 
-(setq TeX-view-program-selection 
-      '(((output-dvi style-pstricks) 
-         "dvips and PDF Viewer") 
-        (output-dvi "PDF Viewer") 
-        (output-pdf "PDF Viewer") 
-        (output-html "Safari"))) 
-(setq TeX-view-program-list 
-      '(("dvips and PDF Viewer" "%(o?)dvips %d -o && open %f") 
-        ("PDF Viewer" "open %o") 
+(setq TeX-save-query nil)
+(setq TeX-view-program-selection
+      '(((output-dvi style-pstricks)
+         "dvips and PDF Viewer")
+        (output-dvi "PDF Viewer")
+        (output-pdf "PDF Viewer")
+        (output-html "Safari")))
+(setq TeX-view-program-list
+      '(("dvips and PDF Viewer" "%(o?)dvips %d -o && open %f")
+        ("PDF Viewer" "open %o")
         ("Safari" "open %o")))
-(getenv "PATH")
- (setenv "PATH"
-(concat
- "/usr/texbin" ":"
-(getenv "PATH")))
+;(getenv "PATH")
+; (setenv "PATH"
+;(concat
+; "/usr/texbin" ":"
+;(getenv "PATH")))
+
+;(global-set-key "\C-\t" 'next-buffer)
+;(global-set-key "\C-\S-\t" 'previous-buffer)
+(global-set-key (kbd "C-<tab>") 'next-buffer)
+(global-set-key (kbd "C-S-<tab>") 'previous-buffer)
 
 (set-default-font "Monaco-28")
 (add-to-list 'load-path "~/.emacs.d/evil") ; only without ELPA/el-get

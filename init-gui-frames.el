@@ -36,7 +36,7 @@
   (let* ((oldalpha (or (frame-parameter frame 'alpha) 100))
          (newalpha (+ incr oldalpha)))
     (when (and (<= frame-alpha-lower-limit newalpha) (>= 100 newalpha))
-      (modify-frame-parameters frame (list (cons 'alpha newalpha))))))
+      (modify-frame-parameters frame (list (cons 'alpha newalpha ))))))
 
 (when (and *is-a-mac* (fboundp 'toggle-frame-fullscreen))
   ;; Command-Option-f to toggle fullscreen mode
