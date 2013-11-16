@@ -2,14 +2,14 @@
 ;;; a number of other files.
 
 (add-to-list 'load-path user-emacs-directory)
-(require 'init-benchmarking) ;; Measure startup time
+;(require 'init-benchmarking) ;; Measure startup time
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (defconst *is-a-mac* (eq system-type 'darwin))
 
-;;----------------------------------------------------------------------------
-;; Bootstrap config
-;;----------------------------------------------------------------------------
+;----------------------------------------------------------------------------
+; Bootstrap config
+;----------------------------------------------------------------------------
 (require 'init-compat)
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
@@ -40,7 +40,7 @@
 (require 'init-flycheck)
 
 (require 'init-recentf)
-(require 'init-ido)
+;(require 'init-ido)
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
 (require 'init-windows)
@@ -52,7 +52,7 @@
 (require 'init-editing-utils)
 
 ;(require 'init-darcs)
-(require 'init-git)
+;(require 'init-git)
 
 (require 'init-crontab)
 (require 'init-textile)
@@ -76,8 +76,7 @@
 ;(require 'init-slime)
 ;(require 'init-clojure)
 ;(require 'init-common-lisp)
-(when *spell-check-support-enabled*
-  (require 'init-spelling))
+(when *spell-check-support-enabled* (require 'init-spelling))
 
 (require 'init-marmalade)
 (require 'init-misc)
@@ -88,8 +87,7 @@
 (require-package 'lua-mode)
 (require-package 'htmlize)
 (require-package 'dsvn)
-(when *is-a-mac*
-  (require-package 'osx-location))
+(when *is-a-mac* (require-package 'osx-location))
 (require-package 'regex-tool)
 
 ;;----------------------------------------------------------------------------
@@ -99,6 +97,8 @@
 (unless (server-running-p)
   (server-start))
 
+;(require 'twilight-anti-bright-theme)
+;(load-theme twilight-anti-bright t)
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
@@ -119,10 +119,25 @@
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
 
-(message "init completed in %.2fms"
-         (sanityinc/time-subtract-millis (current-time) before-init-time))
+;(message "init completed in %.2fms" (sanityinc/time-subtract-millis (current-time) before-init-time))
 
-;; Local Variables:
-;; coding: utf-8
-;; no-byte-compile: t
-;; End:
+
+;(custom-set-variables
+; ;; custom-set-variables was added by Custom.
+; ;; If you edit it by hand, you could mess it up, so be careful.
+; ;; Your init file should contain only one such instance.
+; ;; If there is more than one, they won't work right.
+; ;'(custom-enabled-themes (quote (twilight-anti-bright)))
+; ;'(custom-safe-themes (quote ("9ea054db5cdbd5baa4cda9d373a547435ba88d4e345f4b06f732edbc4f017dc3" default)))
+; '(tool-bar-mode nil))
+;(custom-set-faces
+; ;; custom-set-faces was added by Custom.
+; ;; If you edit it by hand, you could mess it up, so be careful.
+; ;; Your init file should contain only one such instance.
+; ;; If there is more than one, they won't work right.
+; )
+
+;;; Local Variables:
+;;; coding: utf-8
+;;; no-byte-compile: t
+;;; End:

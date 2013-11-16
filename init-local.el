@@ -5,7 +5,9 @@
  ;; If there is more than one, they won't work right.
  ;'(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  ;'(custom-enabled-themes (quote (fogus)))
- '(custom-enabled-themes (quote (purple-haze)))
+ ;'(custom-enabled-themes (quote (purple-haze)))
+ '(custom-enabled-themes (quote (twilight-anti-bright)))
+
  ;'(menu-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -51,8 +53,8 @@
 
 
 ;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
-(set-frame-parameter (selected-frame) 'alpha '(85 64))
-(add-to-list 'default-frame-alist '(alpha 85 64))
+(set-frame-parameter (selected-frame) 'alpha '(90 64))
+(add-to-list 'default-frame-alist '(alpha 90 64))
 
 (require 'saveplace)
 (setq-default save-place t)
@@ -91,10 +93,62 @@
 ;(global-set-key "\C-\S-\t" 'previous-buffer)
 (global-set-key (kbd "C-<tab>") 'next-buffer)
 (global-set-key (kbd "C-S-<tab>") 'previous-buffer)
+;(global-set-key (kbd "<tab>") 'auto-complete)
+;(global-set-key (kbd "<tab>") 'hippie-expand)
+;(eval-after-load 'latex '(define-key LaTeX-mode-map [(tab)] 'auto-complete))
+(eval-after-load 'latex '(define-key LaTeX-mode-map [(tab)] 'hippie-expand))
+(eval-after-load 'java '(define-key java-mode-map [(tab)] 'hippie-expand))
+;(eval-after-load 'latex '(define-key LaTeX-mode-map (kbd "<tab>" 'hippie-expand)))
+;(eval-after-load 'java '(define-key java-mode-map (kbd "<tab>" 'auto-complete)))
+;(eval-after-load 'java '(define-key java-mode-map (kbd "\M-r" 'auto-complete)))
+;(define-key java-mode-map "\C-c\C-r" 'auto-complete)
+;(eval-after-load 'java '(define-key java-mode-map [(tab)] 'auto-complete))
+;(eval-after-load 'Java '(define-key LaTeX-mode-map [(tab)] 'hippie-expand))
+;(eval-after-load 'latex '(auto-complete-mode t))
+;; dirty fix for having AC everywhere
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+(real-global-auto-complete-mode t)
 
-(set-default-font "Monaco-28")
+(require 'ido)
+(ido-mode t)
+;; (require 'smex)
+(global-set-key [(meta x)] (lambda ()
+                             (interactive)
+                             (or (boundp 'smex-cache)
+                                 (smex-initialize))
+                             (global-set-key [(meta x)] 'smex)
+                             (smex)))
+
+(global-set-key [(shift meta x)] (lambda ()
+                                   (interactive)
+                                   (or (boundp 'smex-cache)
+                                       (smex-initialize))
+                                   (global-set-key [(shift meta x)] 'smex-major-mode-commands)
+                                   (smex-major-mode-commands)))
+
+
+
+;(set-default-font "Monaco-28")
+(set-frame-font "Monaco-28")
 (add-to-list 'load-path "~/.emacs.d/evil") ; only without ELPA/el-get
 (require 'evil)
 (evil-mode 1)
 
+;; Open auto-complete-mode
+;;(auto-complete-mode t)
 (provide 'init-local)
+
+
+
+
+
+
+
+
+
+
+

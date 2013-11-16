@@ -1,6 +1,5 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
-;(global-set-key (kbd "\t") 'hippie-expand)
-;(define-key read-expression-map [(tab)] 'hippie-expand)
+;(global-set-key (kbd "\T") 'hippie-expand)
 ;
 ;(defun hippie-unexpand ()
 ;  (interactive)
