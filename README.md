@@ -42,10 +42,24 @@ git clone https://github.com/purcell/emacs.d.git ~/.emacs.d
 Upon starting up Emacs for the first time, further third-party
 packages will be automatically downloaded and installed.
 
+<<<<<<< HEAD
 ## Adding your own customization
 
 To add your own customization, use <kbd>M-x customize</kbd> and/or
 create a file `~/.emacs.d/init-local.el` which looks like this:
+=======
+## Updates
+
+Update the config with `git pull`. You'll probably also want/need to update
+the third-party packages regularly too:
+
+<kbd>M-x package-list-packages</kbd>, then <kbd>U</kbd> followed by <kbd>x</kbd>.
+
+## Adding your own customization
+
+To add your own customization, use <kbd>M-x customize</kbd> and/or
+create a file `~/.emacs.d/lisp/init-local.el` which looks like this:
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 
 ```el
 ... your code here ...

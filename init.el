@@ -1,15 +1,34 @@
+<<<<<<< HEAD
 ;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
 
 (add-to-list 'load-path user-emacs-directory)
 ;(require 'init-benchmarking) ;; Measure startup time
+=======
+
+;;; This file bootstraps the configuration, which is divided into
+;;; a number of other files.
+
+(let ((minver 23))
+  (unless (>= emacs-major-version minver)
+    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
+
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(require 'init-benchmarking) ;; Measure startup time
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (defconst *is-a-mac* (eq system-type 'darwin))
 
+<<<<<<< HEAD
 ;----------------------------------------------------------------------------
 ; Bootstrap config
 ;----------------------------------------------------------------------------
+=======
+;;----------------------------------------------------------------------------
+;; Bootstrap config
+;;----------------------------------------------------------------------------
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 (require 'init-compat)
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
@@ -27,12 +46,20 @@
 (require-package 'mwe-log-commands)
 
 (require 'init-frame-hooks)
+<<<<<<< HEAD
 ;(require 'init-xterm)
 ;(require 'init-themes)
 ;(require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-maxframe)
 ;(require 'init-proxies)
+=======
+(require 'init-xterm)
+(require 'init-themes)
+(require 'init-osx-keys)
+(require 'init-gui-frames)
+(require 'init-proxies)
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 (require 'init-dired)
 (require 'init-isearch)
 (require 'init-uniquify)
@@ -40,6 +67,7 @@
 (require 'init-flycheck)
 
 (require 'init-recentf)
+<<<<<<< HEAD
 ;(require 'init-ido)
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
@@ -53,6 +81,20 @@
 
 ;(require 'init-darcs)
 ;(require 'init-git)
+=======
+(require 'init-ido)
+(require 'init-hippie-expand)
+(require 'init-auto-complete)
+(require 'init-windows)
+(require 'init-sessions)
+(require 'init-fonts)
+(require 'init-mmm)
+
+(require 'init-editing-utils)
+
+(require 'init-darcs)
+(require 'init-git)
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 
 (require 'init-crontab)
 (require 'init-textile)
@@ -71,23 +113,45 @@
 (require 'init-rails)
 (require 'init-sql)
 
+<<<<<<< HEAD
 ;(require 'init-paredit)
 (require 'init-lisp)
 ;(require 'init-slime)
 ;(require 'init-clojure)
 ;(require 'init-common-lisp)
 (when *spell-check-support-enabled* (require 'init-spelling))
+=======
+(require 'init-paredit)
+(require 'init-lisp)
+(require 'init-slime)
+(require 'init-clojure)
+(require 'init-common-lisp)
+
+(when *spell-check-support-enabled*
+  (require 'init-spelling))
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 
 (require 'init-marmalade)
 (require 'init-misc)
 
+<<<<<<< HEAD
 ; Extra packages which don't require any configuration
+=======
+(require 'init-dash)
+(require 'init-ledger)
+;; Extra packages which don't require any configuration
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 
 (require-package 'gnuplot)
 (require-package 'lua-mode)
 (require-package 'htmlize)
 (require-package 'dsvn)
+<<<<<<< HEAD
 (when *is-a-mac* (require-package 'osx-location))
+=======
+(when *is-a-mac*
+  (require-package 'osx-location))
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 (require-package 'regex-tool)
 
 ;;----------------------------------------------------------------------------
@@ -97,8 +161,11 @@
 (unless (server-running-p)
   (server-start))
 
+<<<<<<< HEAD
 ;(require 'twilight-anti-bright-theme)
 ;(load-theme twilight-anti-bright t)
+=======
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
@@ -111,6 +178,11 @@
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-local" containing personal settings
 ;;----------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+(when (file-exists-p (expand-file-name "init-local.el" user-emacs-directory))
+  (error "Please move init-local.el to ~/.emacs.d/lisp"))
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 (require 'init-local nil t)
 
 
@@ -119,6 +191,7 @@
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
 
+<<<<<<< HEAD
 ;(message "init completed in %.2fms" (sanityinc/time-subtract-millis (current-time) before-init-time))
 
 
@@ -141,3 +214,17 @@
 ;;; coding: utf-8
 ;;; no-byte-compile: t
 ;;; End:
+=======
+(add-hook 'after-init-hook
+          (lambda ()
+            (message "init completed in %.2fms"
+                     (sanityinc/time-subtract-millis after-init-time before-init-time))))
+
+
+(provide 'init)
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 .DS_Store
+=======
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
 /url/cache
 /.emacs.desktop
 /auto-save-list
@@ -26,3 +29,8 @@ site-lisp/package/
 /.sqli_history
 /frame-restore-parameters
 /.achievements
+<<<<<<< HEAD
+=======
+/.bookmarks.el
+/history
+>>>>>>> f685d263a5a1b34acaebcd0ffea253b35a20a9f3
